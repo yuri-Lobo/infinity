@@ -1,0 +1,69 @@
+<div class="modal-header">
+  <h4 class="modal-title">Novo Serviço</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="field-2" class="control-label">Serviço</label>
+            <ng-select bindLabel="descricao" placeholder="Selecione um serviço"
+              [items]="listaServicos" ([ngModel])="dados.servico"></ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Local</label>
+        <input type="text" class="form-control" id="field-2"
+          ([ngModel])="dados.local">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Tipo de Executor</label>
+        <select class="form-control" (change)="alterarTipoExecutor($event)"
+          ([ngModel])="dados.tipoExecutor" name="tipoExecutor">
+          <option value="0"></option>
+          <option value="1">Equipe</option>
+          <option value="2">Funcionário</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Executor</label>
+        <input type="text" class="form-control" id="field-2"
+          ([ngModel])="dados.executor">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Data Inicial</label>
+        <input type="date" class="form-control" id="field-2"
+          ([ngModel])="dados.dataInicial">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Data Final</label>
+        <input type="date" class="form-control" id="field-2"
+          ([ngModel])="dados.dataFinal">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary waves-effect"
+    (click)="modal('Cross click')">Limpar</button>
+  <button type="button" class="btn btn-info waves-effect waves-light"
+    (click)="salvar(dados.servico, dados.local, dados.tipoExecutor, dados.executor, dados.dataInicial,dados.dataFinal)">Salvar</button>
+</div>

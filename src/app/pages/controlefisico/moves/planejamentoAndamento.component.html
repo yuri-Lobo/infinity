@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title">Planejamento -> Andamento</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Data Inicial</label>
+        <input type="date" class="form-control" id="field-2"
+          [(ngModel)]="dados.dataInicial">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Data Final</label>
+        <input type="date" class="form-control" id="field-2"
+          [(ngModel)]="dados.dataFinal">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary waves-effect"
+    (click)="limpar()"><i class="fas fa-eraser"></i> Limpar</button>
+  <button type="button" class="btn btn-vermelho waves-effect waves-light"
+    (click)="moverCard(dados.dataFinal, dados.dataInicial)"><i
+      class="fas fa-cloud-upload-alt"></i> Salvar</button>
+</div>

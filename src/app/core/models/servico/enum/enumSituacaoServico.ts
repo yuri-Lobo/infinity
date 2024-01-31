@@ -1,0 +1,6 @@
+export enum EnumSituacaoServico {
+  NAO_PLANEJADO = "NAO_PLANEJADO",
+  PLANEJADO = "PLANEJADO",
+  ANDAMENTO = "ANDAMENTO",
+  CONCLUIDO = "CONCLUIDO",
+}

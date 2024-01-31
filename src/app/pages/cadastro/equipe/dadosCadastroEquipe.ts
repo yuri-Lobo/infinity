@@ -1,0 +1,3 @@
+const dadosCadastroEquipe = [];
+
+export { dadosCadastroEquipe };

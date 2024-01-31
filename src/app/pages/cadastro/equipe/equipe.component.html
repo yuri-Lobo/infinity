@@ -1,0 +1,90 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{titulo}}</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="field-1" class="control-label">Código <i
+            style="color: red">*</i></label>
+        <input [(ngModel)]="dado.codigo" type="text" class="form-control"
+          id="field-1">
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Descrição <i
+            style="color: red">*</i></label>
+        <input [(ngModel)]="dado.descricao" type="text" class="form-control"
+          id="field-2">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Funcionários <i
+            style="color: red">*</i></label>
+        <ng-select [ngModel]="servico" bindLabel="nome"
+          placeholder="Selecione os Funcionários"
+          (change)="funcionarioSelect($event)" [items]="listaFuncionario">
+          <ng-template ng-label-tmp let-item="item">
+            {{ item.nome }} - {{ item.funcao }}
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item">
+            {{ item.nome }} - {{ item.funcao }}
+          </ng-template></ng-select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div>
+        <div class="table-wrapper">
+          <table class="table table-sm mb-0 table-hover">
+            <thead class="table-header">
+              <ng-container>
+                <tr>
+                  <td></td>
+                  <td>
+                  </td>
+                </tr>
+              </ng-container>
+            </thead>
+            <tbody *ngIf="funcionariosSelecionados.length > 0">
+              <ng-container *ngFor="let dado of funcionariosSelecionados">
+                <tr>
+
+                  <th style="text-align: center;" class="diminuirLinha">
+                    <input type="text" readonly value="{{dado.nome}}"
+                      [(ngModel)]="dado.nome" id="unidade"
+                      style="text-align: center;" />
+                  </th>
+
+                  <th class="diminuirLinha">
+                    <button (click)="apagarFuncionario(dado.id)" type="button"
+                      class="buttoncustom mdc-icon-button botaoLixeira"
+                      title="Apagar">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </th>
+                </tr>
+              </ng-container>
+            </tbody>
+            <b>
+              <p *ngIf="funcionariosSelecionados.length === 0"
+                class="nenhumRegistro">
+                Nenhum Funcionário foi selecionado!
+              </p>
+            </b>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary waves-effect"
+    (click)="limpar()"><i class="fas fa-eraser"></i> Limpar</button>
+  <button type="button" class="btn btn-vermelho waves-effect waves-light"
+    (click)="salvar(dado.descricao, dado.codigo)"><i
+      class="fas fa-cloud-upload-alt"></i> Salvar</button>
+</div>

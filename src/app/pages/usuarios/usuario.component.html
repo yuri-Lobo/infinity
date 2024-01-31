@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{titulo}}</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="field-1" class="control-label">Userame <i
+            style="color: red;">*</i></label>
+        <input type="text" class="form-control" id="field-1"
+          [(ngModel)]="dados.username">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Password <i
+            style="color: red;">*</i></label>
+        <input type="text" class="form-control" id="field-2"
+          [(ngModel)]="dados.password">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary waves-effect"
+    (click)="modal('Cross click')"><i class="fas fa-eraser"></i>
+    Limpar</button>
+  <button type="button" class="btn btn-vermelho waves-effect waves-light "
+    (click)="salvar(dados.username, dados.password)"> <i
+      class="fas fa-cloud-upload-alt"></i> Salvar</button>
+</div>

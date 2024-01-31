@@ -1,0 +1,216 @@
+<div class="container-fluid">
+  <app-page-title title="Controle Físico" [breadcrumbItems]="breadCrumbItems">
+  </app-page-title> 
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="card-box" style="padding-top: 20px; ">
+        <ng-template [ngTemplateOutlet]="CardAction"></ng-template>
+        <div class="row">
+          <div class="col-9" style="padding-top: 10px;">
+            <h4 class="header-title">Não Planejado</h4>
+          </div>
+          <div class="col-3">
+            <button type="button" class="btn btn-verde waves-effect waves-light"
+              style="margin-left: 20px;"
+              (click)="abrirCadastro('NaoPlanejado')"><i
+                class="fas fa-plus"></i></button>
+          </div>
+        </div>
+        <br>
+        <ul class="sortable-list tasklist list-unstyled" id="upcoming"
+          dndDropzone dndEffectAllowed="move" (dndDrop)="moverCard($event, 0)">
+          <li class="dndPlaceholder" dndPlaceholderRef></li>
+          <ng-container *ngFor="let task of listaNaoPlanejadoCards">
+            <li class="task-medium"
+              style="padding-top: 10px;padding-bottom: 15px;" [ngClass]="  
+              {
+                'task-low': task.task === 'low',
+                'task-high': task.task === 'high',
+                'task-medium': task.task === 'medium' 
+              }" [dndDraggable]="task" dndEffectAllowed="move">
+
+              <ng-template [ngTemplateOutlet]="ConteudoNaoPlanejado"
+                [ngTemplateOutletContext]="{task:task}"></ng-template>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card-box">
+        <ng-template [ngTemplateOutlet]="CardAction"></ng-template>
+        <div class="row">
+          <div class="col-9" style="padding-top: 10px;">
+            <h4 class="header-title">Planejado</h4>
+          </div>
+          <div class="col-3">
+            <button type="button" class="btn btn-verde waves-effect waves-light"
+              style="margin-left: 20px;" (click)="abrirCadastro('Planejado')"><i
+                class="fas fa-plus"></i></button>
+          </div>
+        </div>
+        <br>
+        <ul class="sortable-list tasklist list-unstyled" id="upcoming"
+          dndDropzone dndEffectAllowed="move" (dndDrop)="moverCard($event, 1)">
+          <li class="dndPlaceholder" dndPlaceholderRef></li>
+          <ng-container *ngFor="let task of listaPlanejadoCards">
+            <li class="task-medium" [ngClass]=" 
+              {
+                'task-low': task.task === 'low',
+                'task-high': task.task === 'high',
+                'task-medium': task.task === 'medium' 
+              }" [dndDraggable]="task" dndEffectAllowed="move">
+              <ng-template [ngTemplateOutlet]="ConteudoPlanejamento"
+                [ngTemplateOutletContext]="{task:task}"></ng-template>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card-box">
+        <ng-template [ngTemplateOutlet]="CardAction"></ng-template>
+        <div class="row">
+          <div class="col-9" style="padding-top: 10px;">
+            <h4 class="header-title">Andamento</h4>
+          </div>
+          <div class="col-3">
+            <button type="button" class="btn btn-verde waves-effect waves-light"
+              style="margin-left: 20px;" (click)="abrirCadastro('Andamento')"><i
+                class="fas fa-plus"></i></button>
+          </div>
+        </div>
+        <br>
+        <ul class="sortable-list tasklist list-unstyled" id="inprogress"
+          dndDropzone dndEffectAllowed="move" (dndDrop)="moverCard($event, 2)">
+          <li class="dndPlaceholder" dndPlaceholderRef></li>
+
+          <ng-container *ngFor="let task of listaAndamentoCards">
+            <li class="task-medium" [ngClass]="
+                {
+                  'task-low': task.task === 'low',
+                  'task-high': task.task === 'high',
+                  'task-medium': task.task === 'medium' 
+                }" [dndDraggable]="task" dndEffectAllowed="move">
+              <ng-template [ngTemplateOutlet]="ConteudoExecucao"
+                [ngTemplateOutletContext]="{task:task}"></ng-template>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card-box">
+        <ng-template [ngTemplateOutlet]="CardAction"></ng-template>
+        <h4 class="header-title">Concluído</h4>
+        <br>
+        <ul class="sortable-list tasklist list-unstyled" id="completed"
+          dndDropzone dndEffectAllowed="move" (dndDrop)="moverCard($event, 3)">
+          <li class="dndPlaceholder" dndPlaceholderRef></li>
+          <ng-container *ngFor="let task of listaConcluidoCards">
+            <li class="task-high" [ngClass]="
+                  {
+                    'task-low': task.task === 'low',
+                    'task-high': task.task === 'high',
+                    'task-medium': task.task === 'medium' 
+                  }" [dndDraggable]="task" dndEffectAllowed="move">
+              <ng-template [ngTemplateOutlet]="ConteudoConcluido"
+                [ngTemplateOutletContext]="{task:task}"></ng-template>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #ConteudoPlanejamento let-task='task'>
+  <i class="ti-close" (click)="excluir(task.id, 'Planejado')"
+    style="cursor: pointer;padding-left: 0px;margin-left: 270px;"></i>
+  <h5 class="mt-0"><a href="javascript: void(0);" class="text-dark"
+      (click)="editar(task.id, 'Planejado')" style="cursor: pointer;">{{
+      task.servico
+      }}</a></h5>
+
+  <b>
+    <p class="linhasTask">Executor: {{ task.executorString }}</p>
+  </b>
+  <b>
+    <p class="linhasTask"> Local: {{ task.local }}</p>
+  </b>
+  <b>
+    <p class="linhasTask">Quantidade: {{ task.quantidade }} {{ task.unidade }}
+    </p>
+  </b>
+  <b>
+    <p class="linhasTask"
+      *ngIf="task.dataInicial != undefined || task.dataFinal != undefined">
+      Data:
+      {{
+      task.dataInicial | date:'dd/MM/yyyy' }} <i
+        class="mdi mdi-arrow-right-bold"></i> {{
+      task.dataFinal | date:'dd/MM/yyyy' }}</p>
+  </b>
+</ng-template>
+<ng-template #ConteudoExecucao let-task='task'>
+  <i class="ti-close" (click)="excluir(task.id, 'Andamento')"
+    style="cursor: pointer;padding-left: 0px;margin-left: 270px;"></i>
+  <h5 class="mt-0"><a href="javascript: void(0);" class="text-dark"
+      (click)="editar(task.id, 'Andamento')" style="cursor: pointer;">{{
+      task.servico
+      }}</a></h5>
+  <b>
+    <p class="linhasTask">Executor: {{ task.executorString }}</p>
+  </b>
+  <b>
+    <p class="linhasTask">Local: {{ task.local }}</p>
+  </b>
+  <b>
+    <p class="linhasTask">Quantidade: {{ task.quantidade }} {{ task.unidade }}
+    </p>
+  </b>
+  <b>
+    <p class="linhasTask"> Data: {{ task.dataInicial | date:'dd/MM/yyyy' }} <i
+        class="mdi mdi-arrow-right-bold"></i> {{ task.dataFinal |
+      date:'dd/MM/yyyy' }}</p>
+  </b>
+
+</ng-template>
+<ng-template #ConteudoConcluido let-task='task'>
+  <!-- <i class="ti-close" (click)="excluir(task.id, 'Planejado')"
+    style="cursor: pointer;padding-left: 0px;margin-left: 270px;"></i> -->
+  <h5 class="mt-0"><a href="javascript: void(0);" class="text-dark">{{
+      task.servico
+      }}</a></h5>
+
+  <b>
+    <p class="linhasTask">Executor: {{ task.executorString }}</p>
+  </b>
+  <b>
+    <p class="linhasTask">Local: {{ task.local }}</p>
+  </b>
+  <b>
+    <p class="linhasTask">Quantidade: {{ task.quantidade }} {{ task.unidade }}
+    </p>
+  </b>
+  <b>
+    <p class="linhasTask"> Data: {{ task.dataInicial | date:'dd/MM/yyyy'}} <i
+        class="mdi mdi-arrow-right-bold"></i> {{ task.dataFinal |
+      date:'dd/MM/yyyy' }}</p>
+  </b>
+  <b>
+    <p class="linhasTask"> Data da Entrega: {{ task.dataEntrega |
+      date:'dd/MM/yyyy'}}</p>
+  </b>
+</ng-template>
+<ng-template #ConteudoNaoPlanejado let-task='task'>
+  <i class="ti-close" (click)="excluir(task.id, 'NaoPlanejado')"
+    style="cursor: pointer;padding-left: 0px;margin-left: 270px;"></i>
+  <h5 class="mt-0"><a href="javascript: void(0);" class="text-dark"
+      (click)="editar(task.id, 'NaoPlanejado')" style="cursor: pointer;">{{
+      task.servico
+      }}</a></h5>
+  <b>
+    <p class="linhasTask">Quantidade: {{ task.quantidade }} {{ task.unidade }}
+    </p>
+  </b>
+</ng-template>

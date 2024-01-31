@@ -1,0 +1,52 @@
+<div class="modal-header">
+  <h4 class="modal-title">Usuarios</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="field-1" class="control-label">Nome</label>
+        <input [(ngModel)]="dados.nome" type="text" class="form-control"
+          id="field-1">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Login</label>
+        <input [(ngModel)]="dados.username" type="text" class="form-control"
+          id="field-2">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Senha</label>
+        <input type="password" [(ngModel)]="dados.password" class="form-control"
+          id="field-2">
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group" style="
+      margin-bottom: 0px;
+      padding-top: 10px;
+      padding-left: 50px;
+  ">
+        <label for="field-2" class="control-label">Ativo</label>
+        <ui-switch [(ngModel)]="dados.status" data-size="small"
+          defaultBoColor="#dfdfdf" color="#00b19d" defaultBgColor="#ED5565"
+          checked></ui-switch>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary waves-effect"
+    (click)="modal('Cross click')"><i class="fas fa-eraser"></i> Limpar</button>
+  <button type="button" class="btn btn-vermelho waves-effect waves-light"
+    (click)="salvar(dados.username, dados.password)"><i
+      class="fas fa-cloud-upload-alt"></i> Salvar</button>
+</div>

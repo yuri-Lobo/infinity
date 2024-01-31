@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{titulo}}</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Serviço <i
+            style="color: red">*</i></label>
+        <ng-select [ngModel]="servico" bindLabel="descricao"
+          placeholder="Selecione um Serviço" (change)="servicoSelect($event)"
+          [items]="listaServicos"></ng-select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <label for="field-2" class="control-label">Quantidade <i
+          style="color: red">*</i></label>
+      <input type="number" class="form-control" [ngModel]="quantidade"
+        step="0.5" id="field-2" min="1" (change)="quantidadeSelect($event)">
+    </div>
+    <div class="col-md-3">
+      <label for="field-2" class="control-label">Unidade <i
+          style="color: red">*</i></label>
+      <input type="text" class="form-control" id="field-2"
+        [(ngModel)]="dados.unidade">
+    </div>
+
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary waves-effect"
+    (click)="limpar()"><i class="fas fa-eraser"></i> Limpar</button>
+  <button type="button" class="btn btn-vermelho waves-effect waves-light"
+    (click)="salvar(dados.unidade)"><i class="fas fa-cloud-upload-alt"></i>
+    Salvar</button>
+</div>

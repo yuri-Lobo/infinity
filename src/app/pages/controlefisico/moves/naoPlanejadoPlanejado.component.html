@@ -1,0 +1,82 @@
+<div class="modal-header">
+  <h4 class="modal-title">Não Planejado -> Planejado</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Local <i
+            style="color: red">*</i></label>
+        <input type="text" class="form-control" id="field-2"
+          [(ngModel)]="dados.local">
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Tipo Executor <i
+            style="color: red">*</i></label>
+        <select class="form-control" (change)="alterarTipoExecutor($event)"
+          name="tipoExecutor" [(ngModel)]="tipoExecutor">
+          <option value="0">Funcionário</option>
+          <option value="1">Equipe</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="field-2" class="control-label">Executor <i
+              style="color: red">*</i></label>
+          <!-- <div *ngIf="tipoExecutor === undefined || tipoExecutor === '0'">
+            <ng-select bindLabel="descricao"
+              placeholder="Selecione um executor"></ng-select>
+          </div> -->
+          <div *ngIf="tipoExecutor === 0">
+            <ng-select bindLabel="nome" placeholder="Selecione um executor"
+              (change)="executorSelect($event)" [items]="listaFuncionarios"
+              [ngModel]="executorSelecionado"></ng-select>
+          </div>
+          <div *ngIf="tipoExecutor === 1">
+            <ng-select bindLabel="descricao" placeholder="Selecione uma equipe"
+              (change)="executorSelect($event)" [items]="listaEquipes"
+              [ngModel]="equipeSelecionada"></ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Quantidade <i
+            style="color: red">*</i></label>
+        <input type="number" [ngModel]="quantidade" class="form-control"
+          id="field-2" min="1" step="0.5" (change)="quantidadeSelect($event)">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Data Inicial</label>
+        <input type="date" class="form-control" id="field-2"
+          [(ngModel)]="dados.dataInicial">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="field-2" class="control-label">Data Final</label>
+        <input type="date" class="form-control" id="field-2"
+          [(ngModel)]="dados.dataFinal">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary waves-effect"
+    (click)="limpar()"><i class="fas fa-eraser"></i> Limpar</button>
+  <button type="button" class="btn btn-vermelho waves-effect waves-light"
+    (click)="moverCard(dados.dataFinal, dados.dataInicial, dados.local,  dados.executor)"><i
+      class="fas fa-cloud-upload-alt"></i> Salvar</button>
+</div>

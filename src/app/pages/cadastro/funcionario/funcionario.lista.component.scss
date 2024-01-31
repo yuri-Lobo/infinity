@@ -1,0 +1,15 @@
+.btn-vermelho {
+  background-color: #ea2951;
+}
+
+.removerAumentarQuantidade {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  margin: 0;
+}
+
+.removerAumentarQuantidade::-webkit-outer-spin-button,
+.removerAumentarQuantidade::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

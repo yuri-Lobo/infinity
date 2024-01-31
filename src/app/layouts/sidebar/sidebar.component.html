@@ -1,0 +1,72 @@
+<!-- ========== Left Sidebar Start ========== -->
+<ng-template #contentTemplate>
+    <!--- Sidemenu -->
+    <div id="sidebar-menu">
+        <ul class="metismenu" id="side-menu" #sideMenu>
+            <li>
+                <a routerLink="/controlefisico" class="side-nav-link-ref"
+                    routerLinkActive="active">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Controle Físico</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript: void(0);" class="waves-effect"
+                    aria-expanded="false">
+                    <i class="fas fa-edit"></i>
+                    <span
+                        class="badge badge-success badge-pill float-right"></span>
+                    <span> Cadastro </span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                    <li>
+                        <a routerLink="/servico" class="side-nav-link-ref"
+                            routerLinkActive="active">Serviço</a>
+                    </li>
+                    <li>
+                        <a routerLink="/funcionario" class="side-nav-link-ref"
+                            routerLinkActive="active">Funcionário</a>
+                    </li>
+                    <li>
+                        <a routerLink="/equipe" class="side-nav-link-ref"
+                            routerLinkActive="active">Equipe</a>
+                    </li>
+                    <li>
+                        <a routerLink="/funcao" class="side-nav-link-ref"
+                            routerLinkActive="active">Função</a>
+                    </li>
+                    <li>
+                        <a routerLink="/projeto" class="side-nav-link-ref"
+                            routerLinkActive="active">Projeto</a>
+                    </li>
+
+
+                </ul>
+            </li>
+
+            <li>
+                <a routerLink="/usuario" class="side-nav-link-ref"
+                    routerLinkActive="active">
+                    <i class="fas fa-user-cog"></i>
+                    <span>Usuarios</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+</ng-template>
+
+
+<div class="left-side-menu">
+
+    <div class="slimscroll-menu" appSlimScroll *ngIf="!isCondensed">
+        <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </div>
+
+    <div class="slimscroll-menu" *ngIf="isCondensed">
+        <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </div>
+
+</div>
+<!-- Left Sidebar End -->

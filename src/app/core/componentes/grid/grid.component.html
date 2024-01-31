@@ -1,0 +1,75 @@
+<table #myDataTable datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+  class="table dt-responsive border-bottom">
+  <thead>
+    <tr>
+      <th *ngIf="select" class="column width-20">
+        <input *ngIf="select && selectAllOption" type="checkbox"
+          [disabled]="disabled" [(ngModel)]="all" (change)="selectAll()" />
+      </th>
+      <th *ngFor="let column of columns" class="column {{ column.getWidthColumn() }} {{
+          column.getHeaderAlignment()
+        }}">
+        {{ column.name }}
+      </th>
+      <th style="width: 15px;" *ngIf="showSync"></th>
+      <th style="width: 15px;" *ngIf="showEdit"></th>
+      <th style="width: 15px;" *ngIf="showDelete"></th>
+      <th style="width: 15px;" *ngIf="showHelper"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of rows; let i = index">
+      <td *ngIf="select" style="padding-left: 17px">
+        <input type="checkbox" [disabled]="disabled"
+          [checked]="checkSelectedId(row.id) || all"
+          (change)="selectEvent(row.id)" />
+      </td>
+      <td *ngFor="let column of rows[i].columns; let j = index"
+        (click)="clickEvent(row.id)" [ngClass]="{ mouseclick: clickable }"
+        class="{{ columns[j].getBodyAlighment() }}">
+        <span *ngIf="columns[j].type == 1">
+          {{column}}
+        </span>
+        <span *ngIf="columns[j].type == 2">
+          <div class="form-group m-0 p-0">
+            <div class="custom-control custom-switch my-0 ml-2 py-0 ">
+              <input type="checkbox" class="custom-control-input" id={{row.id}}
+                (click)="EventChangeColumn(row.id,parseBolean(column), row)"
+                [checked]="column == 'true' " />
+              <label for={{row.id}} class="custom-control-label"> </label>
+            </div>
+          </div>
+        </span>
+      </td>
+      <td style="width: 15px;" *ngIf="showSync">
+        <i (click)="syncEvent(row.id)" *ngIf="row.showSync"
+          class="fas fa-sync iWarning mouseclick"></i>
+      </td>
+      <td style="width: 15px;" (click)="editEvent(row.id)" *ngIf="showEdit">
+        <i class="fas fa-edit mouseclick"></i>
+      </td>
+      <td style="width: 15px;" (click)="deleteEvent(row.id)" *ngIf="showDelete">
+        <i class="fas fa-trash-alt mouseclick"></i>
+      </td>
+      <td style="width: 15px;" (click)="helperEvent(row.id)" *ngIf="showHelper">
+        <i class="fas fa-pen-alt mouseclick"></i>
+      </td>
+
+      <!-- botões adicionais configuráveis -->
+      <ng-container *ngIf="configuracoes?.customButtons?.length > 0">
+        <ng-container *ngFor="let button of configuracoes.customButtons">
+          <td [class]="button.showOnPermission ? button.cssClass : 'd-none'"
+            [ngClass]="{ 'td-commands': true }"
+            (click)="clickCustomButton(button.nome, row.id)"
+            [title]="button.title">
+            <i [class]="button.icone"
+              [ngClass]="{ 'mouseclick command-button': true }"></i>
+          </td>
+        </ng-container>
+      </ng-container>
+    </tr>
+    <tr class="border-bottom" *ngIf="rows != undefined && rows.length == 0">
+      <td valign="top" colspan="10" class="empty">Sem registros</td>
+    </tr>
+  </tbody>
+</table>
