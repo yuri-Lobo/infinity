@@ -13,7 +13,7 @@ Atribuição de serviços a funcionários e equipes
 Configuração e Execução Local
 Clonar o Repositório: Clone o repositório do GitHub para o seu ambiente local.
 
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/yuri-Lobo/infinity.git
 
 Instalar Dependências: Navegue até o diretório do projeto e execute o seguinte comando para instalar as dependências do projeto.
 
