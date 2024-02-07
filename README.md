@@ -2,7 +2,7 @@ Gerenciador de Serviços de Terceiros - Angular e Springboot
 Bem-vindo ao nosso Gerenciador de Serviços de Terceiros, uma aplicação Angular desenvolvida para facilitar o gerenciamento de serviços e clientes.
 
 Sobre o Projeto
-O Gerenciador de Serviços de Terceiros é uma aplicação web desenvolvida em Angular e Springboot que permite aos usuários gerenciar serviços oferecidos a clientes de maneira eficiente e organizada.
+O Gerenciador de Serviços de Terceiros é uma aplicação web desenvolvida em Angular e Springboot que permite aos usuários gerenciarem serviços oferecidos a clientes de maneira eficiente e organizada.
 
 Funcionalidades Principais:
 Cadastro e edição de serviços, equipes e funcionários.
